@@ -1,6 +1,6 @@
 #!/bin/bash
-if [ $# -ne 2 ]; then
-    echo 'Create the image using ./build USER PASS'
+if [ $# -ne 3 ]; then
+    echo 'Create the image using ./build [USER] [PASS] [IMAGENAME]'
     exit 1
 fi
-sudo docker build --build-arg SSH_MASTER_USER=$1 --build-arg SSH_MASTER_PASS=$2 -t sftp_server .
+sudo docker build --build-arg SSH_MASTER_USER=$1 --build-arg SSH_MASTER_PASS=$2 -t $3 .
