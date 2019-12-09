@@ -8,28 +8,39 @@ http://www.inanzzz.com/index.php/post/qdil/creating-a-ssh-server-with-openssh-by
 
 ## Usage
 
-```sh
-git clone https://github.com/choval/sftp-docker
-cd sftp-docker
-./build [USER] [PASS] [IMAGENAME]
+
+### With docker-compose
+
+In .env
+
+```
+SSH_MASTER_USER=username
+SSH_MASTER_PASS=password
 ```
 
-### Example
-
-```sh
-./build myuser mypassword myuser-image
-```
 
 In docker-compose.yml
 
 ```yml
-sftp-image:
-  image: myuser-image
-  ports:
-    - "2222:22"
-  networks:
-    - external
-  volumes:
-    - /var/uploads:/home/myuser/uploads
+version: '3'
+
+services:
+    server:
+        build:
+            context: https://github.com/choval/sftp-docker.git
+            args:
+                SSH_MASTER_USER: ${SSH_MASTER_USER}
+                SSH_MASTER_PASS: ${SSH_MASTER_PASS}
+        hostname: server
+        ports:
+            - "2222:22"
+```
+
+### If you need an image
+
+```sh
+git clone https://github.com/choval/sftp-docker
+cd sftp-docker
+./build [USER] [PASS] [IMAGENAME]
 ```
 
