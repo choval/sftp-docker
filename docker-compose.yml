@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  sftp:
+    build:
+      context: https://github.com/choval/sftp-docker.git
+      args:
+        SSH_MASTER_USER: ${SSH_MASTER_USER}
+        SSH_MASTER_PASS: ${SSH_MASTER_PASS}
+    hostname: sftp
+    container_name: sftp
+    ports:
+      - "2222:22"
