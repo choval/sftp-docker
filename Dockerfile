@@ -1,15 +1,15 @@
 # Copied from
 # http://www.inanzzz.com/index.php/post/qdil/creating-a-ssh-server-with-openssh-by-using-docker-compose-and-connecting-to-it-with-php
-FROM debian:latest
+FROM debian:11-slim
  
 ARG SSH_MASTER_USER
 ARG SSH_MASTER_PASS
  
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
-    vim \
-    sudo \
     openssh-server
+    #vim \
+    #sudo \
  
 COPY ssh_config /etc/ssh/ssh_config
 COPY sshd_config /etc/ssh/sshd_config
